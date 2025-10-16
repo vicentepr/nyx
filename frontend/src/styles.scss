@@ -1,0 +1,38 @@
+@use 'sass:color';
+
+:root {
+  --primary: #00b4d8;
+  --primary-dark: #0077b6;
+  --accent: #90e0ef;
+  --background: #0b0f1d;
+  --surface: #111b2b;
+  --text: #f5f7fb;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background-color: var(--background);
+  color: var(--text);
+  font-family: 'Poppins', sans-serif;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+
+  &:hover {
+    color: color.adjust(var(--accent), $lightness: -10%);
+  }
+}
+
+.mdb-body {
+  background-color: var(--background);
+}
+
+.mdb-btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  border: none;
+}

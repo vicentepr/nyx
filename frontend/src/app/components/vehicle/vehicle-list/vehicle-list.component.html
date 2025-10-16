@@ -1,0 +1,110 @@
+<section class="list-header d-flex justify-content-between align-items-center mb-4">
+  <div>
+    <h2 class="mb-1">Veículos</h2>
+    <p class="text-muted">Total de registros: {{ totalVehicles() }}</p>
+  </div>
+  <a class="btn btn-primary" routerLink="/veiculos/novo">
+    <i class="fas fa-plus me-2"></i> Novo veículo
+  </a>
+</section>
+
+<form class="filter-card card mb-4" [formGroup]="filterForm" (ngSubmit)="onSearch()">
+  <div class="card-body row g-3">
+    <div class="col-12 col-md-4">
+      <label class="form-label">Modelo</label>
+      <input type="text" class="form-control" formControlName="model" />
+    </div>
+    <div class="col-12 col-md-4">
+      <label class="form-label">Placa</label>
+      <input type="text" class="form-control" formControlName="licensePlate" />
+    </div>
+    <div class="col-12 col-md-4">
+      <label class="form-label">Fabricante</label>
+      <select class="form-select" formControlName="manufacturerId">
+        <option [ngValue]="null">Todos</option>
+        <option *ngFor="let manufacturer of manufacturers()" [ngValue]="manufacturer.id">
+          {{ manufacturer.name }}
+        </option>
+      </select>
+    </div>
+    <div class="col-6 col-md-3">
+      <label class="form-label">Ano inicial</label>
+      <input type="number" class="form-control" formControlName="yearFrom" />
+    </div>
+    <div class="col-6 col-md-3">
+      <label class="form-label">Ano final</label>
+      <input type="number" class="form-control" formControlName="yearTo" />
+    </div>
+    <div class="col-6 col-md-3">
+      <label class="form-label">Valor mínimo</label>
+      <input type="number" class="form-control" formControlName="priceFrom" />
+    </div>
+    <div class="col-6 col-md-3">
+      <label class="form-label">Valor máximo</label>
+      <input type="number" class="form-control" formControlName="priceTo" />
+    </div>
+    <div class="col-12 col-md-3">
+      <label class="form-label">Combustível</label>
+      <select class="form-select" formControlName="fuelType">
+        <option value="">Todos</option>
+        <option value="GASOLINE">Gasolina</option>
+        <option value="ETHANOL">Etanol</option>
+        <option value="FLEX">Flex</option>
+        <option value="ELECTRIC">Elétrico</option>
+        <option value="HYBRID">Híbrido</option>
+        <option value="DIESEL">Diesel</option>
+      </select>
+    </div>
+  </div>
+  <div class="card-footer d-flex justify-content-end gap-3">
+    <button type="button" class="btn btn-outline-light" (click)="onReset()">Limpar</button>
+    <button type="submit" class="btn btn-primary">Filtrar</button>
+  </div>
+</form>
+
+<div class="card table-card">
+  <div class="table-responsive">
+    <table class="table table-dark table-striped align-middle">
+      <thead>
+        <tr>
+          <th>Modelo</th>
+          <th>Placa</th>
+          <th>Ano</th>
+          <th>Valor</th>
+          <th>Fabricante</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vehicle of vehicles(); trackBy: trackByVehicle">
+          <td>
+            <div class="fw-semibold">{{ vehicle.model }}</div>
+            <small class="text-muted">{{ vehicle.fuelType }}</small>
+          </td>
+          <td>{{ vehicle.licensePlate }}</td>
+          <td>{{ vehicle.year }}</td>
+          <td>{{ vehicle.price | currency: 'BRL' }}</td>
+          <td>{{ vehicle.manufacturer?.name }}</td>
+          <td class="text-end">
+            <div class="btn-group">
+              <a class="btn btn-outline-light" [routerLink]="['/veiculos', vehicle.id]">
+                <i class="fas fa-pen"></i>
+              </a>
+              <button class="btn btn-outline-danger" type="button" (click)="onDelete(vehicle)">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr *ngIf="!vehicles().length && !loading()">
+          <td colspan="6" class="text-center py-5 text-muted">Nenhum veículo encontrado.</td>
+        </tr>
+        <tr *ngIf="loading()">
+          <td colspan="6" class="text-center py-5">
+            <div class="spinner-border text-primary" role="status"></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

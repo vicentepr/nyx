@@ -1,0 +1,13 @@
+<header class="top-bar shadow-3-strong">
+  <button class="btn btn-link text-light" (click)="toggleMenu.emit()">
+    <i class="fas fa-bars"></i>
+  </button>
+  <div class="brand">
+    <img src="assets/logo.svg" alt="Projeto Integrador" />
+    <span>Projeto Integrador</span>
+  </div>
+  <div class="actions" *ngIf="username as user">
+    <span class="me-3">Olá, {{ user }}!</span>
+    <button class="btn btn-outline-light" (click)="onLogout()">Sair</button>
+  </div>
+</header>

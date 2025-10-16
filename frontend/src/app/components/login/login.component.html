@@ -1,0 +1,20 @@
+<div class="login-wrapper">
+  <div class="card glass-card">
+    <div class="card-body p-5">
+      <h2 class="text-center mb-4">Acessar plataforma</h2>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+        <div class="form-outline mb-4">
+          <input type="text" class="form-control" formControlName="username" placeholder="Usuário" />
+          <label class="form-label">Usuário</label>
+        </div>
+        <div class="form-outline mb-4">
+          <input type="password" class="form-control" formControlName="password" placeholder="Senha" />
+          <label class="form-label">Senha</label>
+        </div>
+        <button class="btn btn-primary w-100" type="submit" [disabled]="submitting">
+          {{ submitting ? 'Entrando...' : 'Entrar' }}
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
