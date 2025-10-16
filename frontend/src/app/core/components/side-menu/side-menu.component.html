@@ -1,0 +1,19 @@
+<nav class="side-menu" [ngClass]="{ opened: opened }">
+  <div class="menu-header">
+    <h6>Menu</h6>
+    <button class="btn btn-link text-light d-lg-none" (click)="close.emit()">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  <ul>
+    <li routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <a routerLink="/"><i class="fas fa-home"></i> Painel</a>
+    </li>
+    <li routerLink="/veiculos" routerLinkActive="active">
+      <a routerLink="/veiculos"><i class="fas fa-car"></i> Veículos</a>
+    </li>
+    <li routerLink="/fabricantes" routerLinkActive="active">
+      <a routerLink="/fabricantes"><i class="fas fa-industry"></i> Fabricantes</a>
+    </li>
+  </ul>
+</nav>

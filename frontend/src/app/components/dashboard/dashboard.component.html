@@ -1,0 +1,13 @@
+<section class="dashboard">
+  <h1 class="mb-4">Panorama geral</h1>
+  <div class="row g-4">
+    <div class="col-12 col-md-4" *ngFor="let card of cards">
+      <div class="card metric-card h-100">
+        <div class="card-body">
+          <p class="metric-label">{{ card.title }}</p>
+          <h2 class="metric-value">{{ card.value | number: '1.0-0' }}</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

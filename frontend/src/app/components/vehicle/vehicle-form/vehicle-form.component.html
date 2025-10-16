@@ -1,0 +1,73 @@
+<section class="form-header d-flex justify-content-between align-items-center mb-4">
+  <div>
+    <h2>{{ pageTitle() }}</h2>
+    <p class="text-muted">Preencha os dados do veículo para registrar no sistema.</p>
+  </div>
+  <a routerLink="/veiculos" class="btn btn-outline-light">
+    <i class="fas fa-arrow-left me-2"></i> Voltar
+  </a>
+</section>
+
+<form class="card form-card" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="card-body row g-4">
+    <div class="col-12 col-md-6">
+      <label class="form-label">Modelo</label>
+      <input type="text" class="form-control" formControlName="model" />
+    </div>
+    <div class="col-12 col-md-3">
+      <label class="form-label">Placa</label>
+      <input type="text" class="form-control" formControlName="licensePlate" />
+    </div>
+    <div class="col-12 col-md-3">
+      <label class="form-label">Ano</label>
+      <input type="number" class="form-control" formControlName="year" />
+    </div>
+    <div class="col-12 col-md-4">
+      <label class="form-label">Preço</label>
+      <input type="number" class="form-control" formControlName="price" />
+    </div>
+    <div class="col-12 col-md-4">
+      <label class="form-label">Quilometragem</label>
+      <input type="number" class="form-control" formControlName="mileage" />
+    </div>
+    <div class="col-12 col-md-4">
+      <label class="form-label">Cor</label>
+      <input type="text" class="form-control" formControlName="color" />
+    </div>
+    <div class="col-12 col-md-4">
+      <label class="form-label">Combustível</label>
+      <select class="form-select" formControlName="fuelType">
+        <option value="GASOLINE">Gasolina</option>
+        <option value="ETHANOL">Etanol</option>
+        <option value="FLEX">Flex</option>
+        <option value="ELECTRIC">Elétrico</option>
+        <option value="HYBRID">Híbrido</option>
+        <option value="DIESEL">Diesel</option>
+      </select>
+    </div>
+    <div class="col-12 col-md-8">
+      <label class="form-label">Fabricante</label>
+      <div class="input-group">
+        <input
+          type="text"
+          class="form-control"
+          [value]="manufacturer()?.name ?? 'Selecione um fabricante'"
+          readonly
+        />
+        <button class="btn btn-outline-light" type="button" (click)="openManufacturerModal()">
+          Selecionar
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer d-flex justify-content-end gap-3">
+    <a class="btn btn-outline-light" routerLink="/veiculos">Cancelar</a>
+    <button class="btn btn-primary" type="submit">Salvar</button>
+  </div>
+</form>
+
+<app-manufacturer-selector-modal
+  [opened]="showManufacturerModal()"
+  (closed)="closeManufacturerModal()"
+  (selected)="onManufacturerSelected($event)"
+></app-manufacturer-selector-modal>
