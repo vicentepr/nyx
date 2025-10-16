@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nyx • Saches premium de nicotina</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body data-api-base-url="http://localhost:3001">
+    <header class="hero">
+      <div class="hero__content">
+        <span class="hero__tag">Saches de nicotina premium</span>
+        <h1>Nyx redefine a experiência discreta de nicotina</h1>
+        <p>
+          Blends científicos, liberação estável e design minimalista criados em São Paulo para consumidores
+          exigentes.
+        </p>
+        <a class="hero__cta" href="#produtos">Explorar portfólio</a>
+      </div>
+      <div class="hero__art"></div>
+    </header>
+
+    <main>
+      <section id="produtos" class="section section--light">
+        <div class="section__header">
+          <h2>Catálogo Nyx</h2>
+          <p>Escolha o perfil de nicotina que se ajusta à sua rotina urbana.</p>
+        </div>
+        <div class="filters">
+          <label>
+            Intensidade
+            <select id="filter-strength">
+              <option value="">Todas</option>
+              <option value="Suave">Suave</option>
+              <option value="Moderado">Moderado</option>
+              <option value="Intenso">Intenso</option>
+            </select>
+          </label>
+          <label>
+            Sabor
+            <input type="text" id="filter-flavor" placeholder="ex: menta" />
+          </label>
+          <label>
+            Máx. nicotina (mg)
+            <input type="number" id="filter-nicotine" min="0" step="3" />
+          </label>
+          <button id="filter-apply">Aplicar</button>
+        </div>
+        <div id="product-grid" class="product-grid" aria-live="polite"></div>
+      </section>
+
+      <section id="historia" class="section section--dark">
+        <div class="section__header">
+          <h2>Nossa história</h2>
+          <p id="story-headline"></p>
+          <p id="story-mission" class="story-mission"></p>
+        </div>
+        <div class="story-timeline" id="story-timeline"></div>
+      </section>
+
+      <section id="insights" class="section section--accent">
+        <div class="section__header">
+          <h2>Insights do laboratório Nyx</h2>
+          <p>Dados em tempo real sobre o portfólio.</p>
+        </div>
+        <dl class="insight-grid" id="insight-grid"></dl>
+      </section>
+
+      <section id="contato" class="section section--light">
+        <div class="section__header">
+          <h2>Contato comercial</h2>
+          <p>Converse com nosso time sobre distribuição e ativações personalizadas.</p>
+        </div>
+        <form id="contact-form" novalidate>
+          <div class="form-grid">
+            <label>
+              Nome
+              <input type="text" name="name" required />
+            </label>
+            <label>
+              E-mail
+              <input type="email" name="email" required />
+            </label>
+            <label>
+              Telefone
+              <input type="tel" name="phone" placeholder="opcional" />
+            </label>
+          </div>
+          <label class="form-full">
+            Mensagem
+            <textarea name="message" rows="4" required></textarea>
+          </label>
+          <button type="submit" class="form-submit">Enviar mensagem</button>
+          <p class="form-feedback" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>© <span id="current-year"></span> Nyx. Saches de nicotina para um futuro sem fumaça.</p>
+      <div class="footer__links">
+        <a href="#produtos">Produtos</a>
+        <a href="#historia">História</a>
+        <a href="#contato">Contato</a>
+      </div>
+    </footer>
+
+    <script src="app.js" type="module"></script>
+  </body>
+</html>
